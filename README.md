@@ -8,6 +8,8 @@ Features:
 
 Developed by Dave Coleman at [PickNik Consulting](http://picknik.ai/)
 
+[![Build Status](https://travis-ci.org/davetcoleman/coveralls_example.svg?branch=master)](https://travis-ci.org/davetcoleman/coveralls_example)
+
 ## Install
 
 ### Ubuntu Debian
