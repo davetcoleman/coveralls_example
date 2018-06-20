@@ -1,0 +1,4 @@
+<launch>
+  <test pkg="example_ros_pkg" type="ros_test" test-name="ros_test"
+        time-limit="300" args=""/>
+</launch>
