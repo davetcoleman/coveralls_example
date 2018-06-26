@@ -1,5 +1,5 @@
 # Used with wstool, users can download and source of all packages in this.
 - git:
-    local-name: example_ros_pkg
-    uri: git@github.com:PickNikRobotics/example_ros_pkg.git
+    local-name: coveralls_example
+    uri: git@github.com:davetcoleman/coveralls_example.git
     version: master
