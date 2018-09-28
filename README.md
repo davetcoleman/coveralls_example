@@ -10,6 +10,8 @@ Developed by Dave Coleman at [PickNik Consulting](http://picknik.ai/)
 
 [![Build Status](https://travis-ci.org/bailaC/coveralls_example.svg?branch=master)](https://travis-ci.org/bailaC/coveralls_example)
 
+[![Coverage Status](https://coveralls.io/repos/github/bailaC/coveralls_example/badge.svg?branch=master)](https://coveralls.io/github/bailaC/coveralls_example?branch=master)
+
 ## Install
 
 ### Ubuntu Debian
