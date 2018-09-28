@@ -1,4 +1,4 @@
-# example_ros_pkg - 2018
+# example_ros_pkg - 2018 - 28th Sep, 2018
 
 Description: Example for Subhas
 
