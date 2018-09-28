@@ -8,7 +8,7 @@ Features:
 
 Developed by Dave Coleman at [PickNik Consulting](http://picknik.ai/)
 
-[![Build Status](https://travis-ci.org/davetcoleman/coveralls_example.svg?branch=master)](https://travis-ci.org/davetcoleman/coveralls_example)
+[![Build Status](https://travis-ci.org/bailaC/coveralls_example.svg?branch=master)](https://travis-ci.org/bailaC/coveralls_example)
 
 ## Install
 
