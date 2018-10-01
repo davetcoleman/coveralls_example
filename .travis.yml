@@ -24,4 +24,5 @@ script:
   - source .moveit_ci/travis.sh
 
 after_success:
+- rostest ros_test test/ros_test.test
 - coveralls
