@@ -19,10 +19,9 @@ env:
   matrix:
     - ROS_DISTRO=kinetic  ROS_REPO=ros-shadow-fixed UPSTREAM_WORKSPACE=./example_ros_pkg.rosinstall
 before_script:
-  - git clone -q https://github.com/ros-planning/moveit_ci.git .moveit_ci
+  - git clone -q https://github.com/bailaC/moveit_ci.git .moveit_ci
 script:
   - source .moveit_ci/travis.sh
 
 after_success:
-- rostest ros_test test/ros_test.test
 - coveralls
