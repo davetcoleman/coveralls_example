@@ -16,7 +16,6 @@ before_install: # Use this to prepare the system to install prerequisites or dep
   - wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
   - sudo apt-get update -qq
   - sudo apt-get install -qq -y python-rosdep python-wstool python-catkin-tools python-catkin-pkg
-  - source /opt/ros/$ROS_DISTRO/setup.bash
   # Setup rosdep
   - sudo rosdep init
   - rosdep update
@@ -25,6 +24,7 @@ install:
   - sudo apt-get update
   - sudo pip install coveralls
   - sudo apt-get install ros-$ROS_DISTRO-desktop-full
+  - source /opt/ros/$ROS_DISTRO/setup.bash
   - mkdir -p ~/catkin_ws/src
   - cd ~/catkin_ws/src
   - catkin_init_workspace
