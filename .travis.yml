@@ -24,6 +24,7 @@ before_install: # Use this to prepare the system to install prerequisites or dep
 install:
   - sudo apt-get update
   - sudo pip install coveralls
+  - sudo apt-get install ros-$ROS_DISTRO-desktop-full
   - mkdir -p ~/catkin_ws/src
   - cd ~/catkin_ws/src
   - catkin_init_workspace
