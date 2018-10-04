@@ -64,9 +64,9 @@ before_script:
 
 script:
   - source .moveit_ci/travis.sh
-  - ./build.sh
-  - ./travis_qmake_gcc_cpp11_gcov
-  - ./get_code_cov.sh
+  #- ./build.sh
+  #- ./travis_qmake_gcc_cpp11_gcov
+  #- ./get_code_cov.sh
   - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake -DCOVERAGE=1 .
   - cmake --build . 
   - ./tests
