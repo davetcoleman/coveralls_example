@@ -1,19 +1,85 @@
 # This config file for Travis CI utilizes https://github.com/ros-planning/moveit_ci/ package.
 sudo: required
-dist: trusty
+dist: xenial
 services:
   - docker
 language: generic
 compiler:
   - gcc
+
+before_install: # Use this to prepare the system to install prerequisites or dependencies
+  # Define some config vars
+  - export CI_SOURCE_PATH=$(pwd)
+  - export REPOSITORY_NAME=${PWD##*/}
+  - echo "Testing branch $TRAVIS_BRANCH of $REPOSITORY_NAME"
+  - sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+  - sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq -y python-rosdep python-wstool python-catkin-tools python-catkin-pkg
+  # Setup rosdep
+  - sudo rosdep init
+  - rosdep update
+  
+install:
+  - sudo apt-get update
+  - sudo pip install coveralls
+  - sudo apt-get install ros-$ROS_DISTRO-desktop-full
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+  - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+  - pip install --user cpp-coveralls
+  
+  # - mkdir -p ~/catkin_ws/src
+  # - cd ~/catkin_ws/src
+  # - catkin_init_workspace
+  # # Create the devel/setup.bash (run catkin_make with an empty workspace) and
+  # # source it to set the path variables.
+  # - cd ~/catkin_ws
+  # - catkin_make
+  # - source devel/setup.bash
+  # # Add the package under integration to the workspace using a symlink.
+  # - cd ~/catkin_ws/src
+  # - ln -s $CI_SOURCE_PATH .
+
 notifications:
   email:
     recipients:
-      - dave@picknik.ai
+      - subhasdaas@gmail.com
 env:
   matrix:
     - ROS_DISTRO=kinetic  ROS_REPO=ros-shadow-fixed UPSTREAM_WORKSPACE=./example_ros_pkg.rosinstall
+    
+# before_script:
+  # - git clone -q https://github.com/bailaC/moveit_ci.git .moveit_ci
+  
 before_script:
-  - git clone -q https://github.com/ros-planning/moveit_ci.git .moveit_ci -b coveralls
+  # source dependencies: install using wstool.
+  #- cd ~/catkin_ws/src
+  - wstool init
+  - if [[ -f $ROSINSTALL_FILE ]] ; then wstool merge $ROSINSTALL_FILE ; fi
+  - wstool up
+  # package depdencies: install using rosdep.
+  #- cd ~/catkin_ws
+  #- rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
+  - git clone -q https://github.com/bailaC/moveit_ci.git .moveit_ci
+
 script:
   - source .moveit_ci/travis.sh
+  #- ./build.sh
+  #- ./travis_qmake_gcc_cpp11_gcov
+  #- ./get_code_cov.sh
+  - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake -DCOVERAGE=1 .
+  - cmake --build . 
+  - ./tests
+
+after_success:
+  - source /opt/ros/$ROS_DISTRO/setup.bash
+  #- cd ~/catkin_ws
+  #- catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
+  # Run the tests, ensuring the path is set correctly.
+  #- source devel/setup.bash
+  #- catkin_make run_tests && catkin_test_results
+  - catkin_make
+  - source devel/setup.bash
+  - bash <(curl -s https://codecov.io/bash)
+  #- rostest ros_test test/ros_test.test
+  #- coveralls

@@ -1,4 +1,6 @@
-# example_ros_pkg
+# example_ros_pkg - 2018 - 1st Oct, 2018
+
+Dummy Commit - 07
 
 Description: Example for Subhas
 
@@ -8,7 +10,12 @@ Features:
 
 Developed by Dave Coleman at [PickNik Consulting](http://picknik.ai/)
 
-[![Build Status](https://travis-ci.org/davetcoleman/coveralls_example.svg?branch=master)](https://travis-ci.org/davetcoleman/coveralls_example)
+[![Build Status](https://travis-ci.org/bailaC/coveralls_example.svg?branch=master)](https://travis-ci.org/bailaC/coveralls_example)
+
+[![Coverage Status](https://coveralls.io/repos/github/bailaC/coveralls_example/badge.svg?branch=master)](https://coveralls.io/github/bailaC/coveralls_example?branch=master)
+
+[![codecov](https://codecov.io/gh/bailaC/coveralls_example/branch/master/graph/badge.svg)](https://codecov.io/gh/bailaC/coveralls_example)
+
 
 ## Install
 
