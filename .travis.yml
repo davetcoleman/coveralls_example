@@ -26,6 +26,8 @@ install:
   - sudo apt-get install ros-$ROS_DISTRO-desktop-full
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - sudo update-alternatives --install /usr/bin/gcov gcov /usr/bin/gcov-5 90
+  - pip install --user cpp-coveralls
+  
   # - mkdir -p ~/catkin_ws/src
   # - cd ~/catkin_ws/src
   # - catkin_init_workspace
@@ -46,20 +48,6 @@ env:
   matrix:
     - ROS_DISTRO=kinetic  ROS_REPO=ros-shadow-fixed UPSTREAM_WORKSPACE=./example_ros_pkg.rosinstall
     
-  include:
-    language: elixir
-
-    elixir:
-      - 1.2.0
-
-    otp_release:
-      - 18.0
-
-    env:
-      - MIX_ENV=test
-
-    script: mix coveralls.travis
-    
 # before_script:
   # - git clone -q https://github.com/bailaC/moveit_ci.git .moveit_ci
   
@@ -79,6 +67,9 @@ script:
   - ./build.sh
   - ./travis_qmake_gcc_cpp11_gcov
   - ./get_code_cov.sh
+  - CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake -DCOVERAGE=1 .
+  - cmake --build . 
+  - ./tests
 
 after_success:
   - source /opt/ros/$ROS_DISTRO/setup.bash
