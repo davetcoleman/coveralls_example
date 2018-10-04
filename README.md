@@ -14,6 +14,9 @@ Developed by Dave Coleman at [PickNik Consulting](http://picknik.ai/)
 
 [![Coverage Status](https://coveralls.io/repos/github/bailaC/coveralls_example/badge.svg?branch=master)](https://coveralls.io/github/bailaC/coveralls_example?branch=master)
 
+[![codecov](https://codecov.io/gh/bailaC/coveralls_example/branch/master/graph/badge.svg)](https://codecov.io/gh/bailaC/coveralls_example)
+
+
 ## Install
 
 ### Ubuntu Debian
